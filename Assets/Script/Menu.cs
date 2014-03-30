@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 
@@ -94,6 +95,30 @@ public class Menu : MonoBehaviour
         }
     }
 
+    class Sample_2_1 : IEnumerable<int>
+    {
+        public IEnumerator<int> GetEnumerator()
+        {
+            for(int i=0; i<10; i++)
+            {
+                Debug.Log("before int GetEnumerator");
+                yield return i;
+                Debug.Log("after int GetEnumerator");
+            }
+
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+    }
+
+
+    /// <summary>
+    /// UI
+    /// </summary>
 
 
 	// Use this for initialization
@@ -250,7 +275,7 @@ public class Menu : MonoBehaviour
 
         if (GUI.Button (new Rect (190, 70, X_WIDTH, Y_HEIGHT), "1_16")) 
         {
-            dynamic t = new A();
+//            dynamic t = new A();
 //            t.MethodDynamic();
 //            t.Class_1_16();
         }
@@ -262,6 +287,45 @@ public class Menu : MonoBehaviour
             //            t.MethodDynamic();
             //            t.Class_1_16();
         }
+
+        
+        if (GUI.Button (new Rect (10, 100, X_WIDTH, Y_HEIGHT), "2_1")) 
+        {
+            foreach(var n in new Sample_2_1())
+            {
+                Debug.Log(n.ToString());
+            }
+        }
+
+
+        if (GUI.Button (new Rect (100, 100, X_WIDTH, Y_HEIGHT), "2_2")) 
+        {
+            foreach(var n in Enumerable.Range(0,10))
+            {
+                Debug.Log("renban = " + n.ToString());
+            }
+        }
+        
+        if (GUI.Button (new Rect (190, 100, X_WIDTH, Y_HEIGHT), "2_3_1")) 
+        {
+            var s = Enumerable.Range(1,7);
+            var q = from n in s from m in s select string.Format("{0,7}{1}",Math.Pow(n,m),m == 7 ? "¥n":"");
+
+            foreach( var n in q) 
+            {
+                Debug.Log(n.ToString());
+            }
+        }
+
+        
+        if (GUI.Button (new Rect (280, 100, X_WIDTH, Y_HEIGHT), "2_3_2")) 
+        {
+            var s = Enumerable.Range(1,7);
+            var q = s.SelectMany(c=>s,(n,m) =>string.Format("{0,7}",Math.Pow(n,m), m == 7 ? "¥n" :""));
+
+            foreach( var n in q) Debug.Log(n.ToString());
+        }
+        
 
 
     }
