@@ -17,7 +17,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-					GlobalSection(MonoDevelopProperties) = preSolution
+			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -164,6 +164,13 @@ Global
 		$27.NamingStyle = PascalCase
 		$27.IncludeInstanceMembers = True
 		$27.IncludeStaticEntities = True
+		$0.VersionControlPolicy = $29
+		$29.inheritsSet = Mono
+		$0.ChangeLogPolicy = $30
+		$30.UpdateMode = None
+		$30.MessageStyle = $31
+		$31.LineAlign = 0
+		$30.inheritsSet = Mono
 	EndGlobalSection
 
 EndGlobal

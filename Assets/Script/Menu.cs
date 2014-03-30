@@ -2,12 +2,20 @@
 using System;
 using System.Collections;
 using System.Linq;
+using System.IO;
+
 
 public class Menu : MonoBehaviour 
 {
 
 	private const int X_WIDTH = 80;
 	private const int Y_HEIGHT = 20;
+
+    enum abcde
+    {
+        oks=0,
+        ngs=1
+    };
 
 	#region practice 1_1
 	class Class1_1
@@ -43,6 +51,48 @@ public class Menu : MonoBehaviour
 		}
 	}
 	#endregion
+
+    
+    #region practice 1_12
+    class Class1_12
+    {
+       public string A,B,C;
+    }
+    #endregion
+    
+    #region practice 1_12
+    void Class1_14(Action goAction)
+    {
+        UnityEngine.Debug.Log(" Door Open");
+        goAction();
+        UnityEngine.Debug.Log(" Door Close");
+    }
+    #endregion
+
+    class A
+    {
+        public void MethodDynamic()
+        {
+            UnityEngine.Debug.Log("dynamic");
+        }
+    }
+
+
+    class Class_1_18A
+    {
+        private static string three;
+        public static void Three()
+        {
+            Debug.Log(three);
+        }
+
+        static Class_1_18A()
+        {
+            Debug.Log("two");
+            three = "three";
+
+        }
+    }
 
 
 
@@ -150,10 +200,69 @@ public class Menu : MonoBehaviour
 
         if (GUI.Button (new Rect (280, 40, X_WIDTH, Y_HEIGHT), "1_12")) 
         {
-            
-            Debug.Log("1_12");
+           
+            var sample = new Class1_12()
+            {
+                A = "",
+                B = "This is B",
+                C = "This is C"
+            };
+
+            Debug.Log("1_12 " + sample.A + " " + sample.B + " " + sample.C );
 
         }
+
+        
+        if (GUI.Button (new Rect (370, 40, X_WIDTH, Y_HEIGHT), "1_13")) 
+        {
+            Action DebugLogs = () => {};
+            DebugLogs = () => Debug.Log("Action Go");
+            DebugLogs();
+        }
+        
+        if (GUI.Button (new Rect (10, 70, X_WIDTH, Y_HEIGHT), "1_14")) 
+        {
+            Class1_14(() => Debug.Log("welcome"));
+            Class1_14(() => Debug.Log("Hello"));
+
+        }
+
+
+        if (GUI.Button (new Rect (100, 70, X_WIDTH, Y_HEIGHT), "1_15")) 
+        {
+            int[] ar = {1,0};
+            var q = from n in ar select n;
+
+            if(q.Any((c) => c <= 0))
+            {
+                Debug.Log("minus");
+            }
+
+            using(var writer = File.CreateText("aaaa"))
+            {
+                foreach( var n in q)
+                {
+                    writer.WriteLine(n);
+                }
+            }
+        }
+
+
+        if (GUI.Button (new Rect (190, 70, X_WIDTH, Y_HEIGHT), "1_16")) 
+        {
+            dynamic t = new A();
+//            t.MethodDynamic();
+//            t.Class_1_16();
+        }
+
+        if (GUI.Button (new Rect (280, 70, X_WIDTH, Y_HEIGHT), "1_18")) 
+        {
+            Debug.Log("one");
+            Class_1_18A.Three();
+            //            t.MethodDynamic();
+            //            t.Class_1_16();
+        }
+
 
     }
 }
