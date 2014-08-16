@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
 
 	private const int X_WIDTH = 80;
 	private const int Y_HEIGHT = 20;
+    private const int Z_WIDTH = 1;
 
     enum abcde
     {
