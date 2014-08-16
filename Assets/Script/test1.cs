@@ -15,6 +15,6 @@ public class test1 : MonoBehaviour {
 
     void OnEnable()
     {
-        Debug.Log("aaabbbcccccdddddeeeee");
+        Debug.Log("aaabbbcccccdddddeeeeefffff");
     }
 }
